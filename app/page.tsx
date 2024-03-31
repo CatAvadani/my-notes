@@ -41,7 +41,7 @@ export default function Home() {
           type='text'
           placeholder='Enter title'
           className='
-         p-4 rounded text-black'
+         p-4 rounded text-black focus:outline-none'
         />
 
         <textarea
@@ -50,7 +50,7 @@ export default function Home() {
           cols={50}
           rows={5}
           placeholder='Enter note'
-          className=' p-4 rounded text-black'
+          className=' p-4 rounded text-black focus:outline-none '
         ></textarea>
         <button
           onClick={handleClick}

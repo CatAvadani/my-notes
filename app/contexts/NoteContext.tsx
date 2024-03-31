@@ -14,7 +14,8 @@ export interface Note {
 
 interface NoteContextValue {
   notes: Note[];
-  addNotes: (note: Note) => void;
+  addNote: (note: Note) => void;
+  removeNote: (note: Note) => void;
 }
 
 const NoteContext = createContext({} as NoteContextValue);
@@ -36,17 +37,22 @@ function NotesProvider(props: PropsWithChildren) {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes, isLoaded]);
 
-  const addNotes = (note: Note) => {
+  const addNote = (note: Note) => {
     setNotes([...notes, note]);
   };
 
-  console.log(notes);
+  const removeNote = (note: Note) => {
+    console.log("i was clicked");
+    const updatedNotes = notes.filter((item) => item.title !== note.title);
+    setNotes(updatedNotes);
+  };
 
   return (
     <NoteContext.Provider
       value={{
         notes,
-        addNotes,
+        addNote,
+        removeNote,
       }}
     >
       {props.children}

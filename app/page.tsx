@@ -1,13 +1,43 @@
+"use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useNotes } from "./contexts/NoteContext";
+
 export default function Home() {
+  const router = useRouter();
+  const { addNotes } = useNotes();
+  const [newTitle, setNewTitle] = useState("");
+  const [newNote, setNewNote] = useState("");
+
+  function handleTitleChange(e) {
+    const text = e.target.value;
+    setNewTitle(text);
+  }
+
+  function handleNoteChange(e) {
+    const note = e.target.value;
+    setNewNote(note);
+  }
+
+  function handleClick(e) {
+    const note = { title: newTitle, text: newNote };
+    addNotes(note);
+    router.push("/allNotes");
+    e.preventDefault();
+  }
+
   return (
     <div className=' flex flex-col items-center py-4 mt-9 space-y-5'>
       <h1 className='text-2xl md:text-3xl font-bold mb-10 mt-0'>MY NOTES</h1>
       <form
+        onSubmit={handleClick}
         action='submit'
         className='flex flex-col space-y-1 bg-black/5 rounded p-8 w-[90vw] md:p-10 md:px-16  md:w-full'
       >
         <label className=' font-semibold mb-2'>New Note</label>
         <input
+          onChange={handleTitleChange}
+          value={newTitle}
           type='text'
           placeholder='Enter title'
           className='
@@ -15,14 +45,17 @@ export default function Home() {
         />
 
         <textarea
-          name='Your Note'
-          id='note'
+          onChange={handleNoteChange}
+          value={newNote}
           cols={50}
           rows={5}
           placeholder='Enter note'
           className=' p-4 rounded text-black'
         ></textarea>
-        <button className=' p-4 bg-[#675c88] text-white font-semibold rounded hover:bg-[#53486b] transition-all hover:text-slate-300'>
+        <button
+          type='submit'
+          className=' p-4 bg-[#675c88] text-white font-semibold rounded hover:bg-[#53486b] transition-all hover:text-slate-300'
+        >
           SAVE NOTE
         </button>
       </form>

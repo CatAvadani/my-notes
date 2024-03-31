@@ -1,11 +1,12 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useNotes } from "./contexts/NoteContext";
 
 export default function Home() {
   const router = useRouter();
-  const { addNotes } = useNotes();
+  const { addNote } = useNotes();
   const [newTitle, setNewTitle] = useState("");
   const [newNote, setNewNote] = useState("");
 
@@ -21,7 +22,7 @@ export default function Home() {
 
   function handleClick(e) {
     const note = { title: newTitle, text: newNote };
-    addNotes(note);
+    addNote(note);
     router.push("/allNotes");
     e.preventDefault();
   }
@@ -57,6 +58,11 @@ export default function Home() {
         >
           SAVE NOTE
         </button>
+        <Link href={"/allNotes"}>
+          <button className=' p-4 bg-[#675c88] text-white font-semibold rounded hover:bg-[#53486b] transition-all hover:text-slate-100 w-full'>
+            VIEW MY NOTES
+          </button>
+        </Link>
       </form>
     </div>
   );

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useNotes } from "../contexts/NoteContext";
 
 export default function AllNotes() {
-  const { notes } = useNotes();
+  const { notes, removeNote } = useNotes();
 
   return (
     <div className=' flex flex-col mt-24  text-gray-700 justify-center items-center'>
@@ -28,7 +28,10 @@ export default function AllNotes() {
           >
             <div className='flex justify-between'>
               <h1 className=' font-semibold mb-2 capitalize'>{note.title}</h1>
-              <XMarkIcon className='h-6 w-6 text-red-700' />
+              <XMarkIcon
+                onClick={() => removeNote(note)}
+                className='h-6 w-6 text-red-700 cursor-pointer hover:scale-125 transition-all'
+              />
             </div>
             <hr />
             <p className='mt-4'>{note.text}</p>

@@ -3,10 +3,30 @@
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { useNotes } from "../contexts/NoteContext";
+import { useState } from "react";
+import ConfirmationAlert from "../components/ConfirmationAlert";
+import { Note, useNotes } from "../contexts/NoteContext";
 
 export default function AllNotes() {
   const { notes, removeNote } = useNotes();
+  const [showAlert, setShowAlert] = useState(false);
+  const [noteToRemove, setNoteToRemove] = useState<Note | null>(null);
+
+  const handleShowAlert = (note: Note) => {
+    setNoteToRemove(note);
+    setShowAlert(true);
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  const handleRemoveNote = () => {
+    if (noteToRemove) {
+      removeNote(noteToRemove); // Remove the selected note
+      setShowAlert(false);
+    }
+  };
 
   return (
     <div className=' flex flex-col mt-24  text-gray-700 justify-center items-center'>
@@ -32,9 +52,17 @@ export default function AllNotes() {
               <div className='flex justify-center gap-2'>
                 <PencilSquareIcon className=' size-5 text-gray-600 cursor-pointer hover:scale-125 transition-all' />
                 <XMarkIcon
-                  onClick={() => removeNote(note)}
+                  // onClick={() => removeNote(note)}
+                  onClick={() => handleShowAlert(note)}
                   className=' size-6 text-red-700 cursor-pointer hover:scale-125 transition-all'
                 />
+                {showAlert && (
+                  <ConfirmationAlert
+                    message='Are you sure you want to remove this note?'
+                    onClose={handleCloseAlert}
+                    onRemove={handleRemoveNote}
+                  />
+                )}
               </div>
             </div>
             <hr />

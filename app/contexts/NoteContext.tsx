@@ -20,6 +20,9 @@ interface NoteContextValue {
 
 const NoteContext = createContext({} as NoteContextValue)
 
+// This function is missing return type
+// Example: function NotesProvider(props: PropsWithChildren): void
+
 function NotesProvider(props: PropsWithChildren) {
   const [notes, setNotes] = useState<Note[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
@@ -38,6 +41,8 @@ function NotesProvider(props: PropsWithChildren) {
   }, [notes, isLoaded])
 
   const addNote = (note: Note) => {
+    // Unnecessary console log - should be removed
+    console.log(notes)
     setNotes([...notes, note])
   }
 

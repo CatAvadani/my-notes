@@ -1,51 +1,58 @@
-"use client";
+'use client'
 import {
   PropsWithChildren,
   createContext,
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react'
 
 export interface Note {
-  title: string;
-  text: string;
+  // Repeating the same name as the interface when naming the variables
+  noteTitle: string
+  noteText: string
+
+  // Better naming approach:
+  // title: string;
+  // text:string;
 }
 
 interface NoteContextValue {
-  notes: Note[];
-  addNote: (note: Note) => void;
-  removeNote: (note: Note) => void;
+  notes: Note[]
+  addNote: (note: Note) => void
+  removeNote: (note: Note) => void
 }
 
-const NoteContext = createContext({} as NoteContextValue);
+const NoteContext = createContext({} as NoteContextValue)
 
 function NotesProvider(props: PropsWithChildren) {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [notes, setNotes] = useState<Note[]>([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    const savedNotes = localStorage.getItem("notes");
+    const savedNotes = localStorage.getItem('notes')
     if (savedNotes) {
-      setNotes(JSON.parse(savedNotes));
+      setNotes(JSON.parse(savedNotes))
     }
-    setIsLoaded(true);
-  }, []);
+    setIsLoaded(true)
+  }, [])
 
   useEffect(() => {
-    if (!isLoaded) return;
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes, isLoaded]);
+    if (!isLoaded) return
+    localStorage.setItem('notes', JSON.stringify(notes))
+  }, [notes, isLoaded])
 
   const addNote = (note: Note) => {
-    setNotes([...notes, note]);
-  };
+    setNotes([...notes, note])
+  }
 
   const removeNote = (note: Note) => {
-    console.log("i was clicked");
-    const updatedNotes = notes.filter((item) => item.title !== note.title);
-    setNotes(updatedNotes);
-  };
+    console.log('i was clicked')
+    const updatedNotes = notes.filter(
+      (item) => item.noteTitle !== note.noteTitle
+    )
+    setNotes(updatedNotes)
+  }
 
   return (
     <NoteContext.Provider
@@ -57,8 +64,8 @@ function NotesProvider(props: PropsWithChildren) {
     >
       {props.children}
     </NoteContext.Provider>
-  );
+  )
 }
 
-export const useNotes = () => useContext(NoteContext);
-export default NotesProvider;
+export const useNotes = () => useContext(NoteContext)
+export default NotesProvider

@@ -8,7 +8,7 @@ import {
 } from 'react'
 
 export interface Note {
-  // Repeating the same name as the interface when naming the variables
+  // Repeating the same name as the interface when naming the variables - don't add unneeded context 'Clean code'
   noteTitle: string
   noteText: string
 
@@ -43,6 +43,11 @@ function NotesProvider(props: PropsWithChildren) {
   }, [notes, isLoaded])
 
   const addNote = (note: Note) => {
+    setNotes([...notes, note])
+  }
+
+  // Duplicated code, unused code - should be removed
+  const createNote = (note: Note) => {
     setNotes([...notes, note])
   }
 

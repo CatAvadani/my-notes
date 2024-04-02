@@ -8,13 +8,13 @@ import {
 } from 'react'
 
 export interface Note {
-  // Repeating the same name as the interface when naming the variables
-  noteTitle: string
-  noteText: string
+  // Repeating the same name as the interface when naming the variables - don't add unneeded context 'Clean code'
+  // noteTitle: string
+  // noteText: string
 
   // Better naming approach:
-  // title: string;
-  // text:string;
+  title: string
+  text: string
 }
 
 interface NoteContextValue {
@@ -46,11 +46,14 @@ function NotesProvider(props: PropsWithChildren) {
     setNotes([...notes, note])
   }
 
+  // Duplicated code, unused code - should be removed
+  const createNote = (note: Note) => {
+    setNotes([...notes, note])
+  }
+
   const removeNote = (note: Note) => {
     console.log('i was clicked')
-    const updatedNotes = notes.filter(
-      (item) => item.noteTitle !== note.noteTitle
-    )
+    const updatedNotes = notes.filter((item) => item.title !== note.title)
     setNotes(updatedNotes)
   }
 

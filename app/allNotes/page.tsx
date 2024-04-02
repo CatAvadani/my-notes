@@ -10,26 +10,35 @@ import { Note, useNotes } from '../contexts/NoteContext'
 export default function AllNotes() {
   const { notes, removeNote } = useNotes()
 
-  // unused variables
+  // Unused variables  - remove all the unused code 'Clean code'
   let newTitle,
     setNewTitle = useState('')
   const [showAlert, setShowAlert] = useState(false)
-  // Not being consistent with names - breaking the naming convention
+  // Not being consistent with names - breaking the naming convention 'Clean code'
   const [noteToRemove, SetNoteToRemove] = useState<Note | null>(null)
 
-  const handleShowAlert = (note: Note) => {
+  // Bad function name - function name should say what they do 'Clean code'
+  // Better name example:  const handleShowAlert
+  const handleSA = (note: Note) => {
     SetNoteToRemove(note)
     setShowAlert(true)
   }
 
-  const handleCloseAlert = () => {
+  // Bad function name - function name should say what they do 'Clean code'
+  // Better name example:  const handleCloseAlert
+  const handleCA = () => {
     setShowAlert(false)
   }
 
+  // No need to add positional markers, the name of the function it's self explanatory - this makes the code heavier. 'Clean code' - this markers should be removed
+  ///////////////////////////////////
+  // Function to remove notes
+  ///////////////////////////////////
   const handleRemoveNote = () => {
-    console.log('Remove note')
     if (noteToRemove) {
-      removeNote(noteToRemove) // Remove the selected note
+      // Unnecessary comment - no need to comment about a function that  has an explanatory name
+      // Remove the selected note
+      removeNote(noteToRemove)
       setShowAlert(false)
     }
   }
@@ -58,14 +67,15 @@ export default function AllNotes() {
               <div className="flex justify-center gap-2">
                 <PencilSquareIcon className=" size-5 text-gray-600 cursor-pointer hover:scale-125 transition-all" />
                 <XMarkIcon
-                  // onClick={() => removeNote(note)}
-                  onClick={() => handleShowAlert(note)}
+                  // Keeping unused commented code  - best practice is to remove the commented out cod to be able to improve readability
+                  // onClick={() => removeNote(note)} // this code should be removed
+                  onClick={() => handleSA(note)}
                   className=" size-6 text-red-700 cursor-pointer hover:scale-125 transition-all"
                 />
                 {showAlert && (
                   <ConfirmationAlert
                     message="Are you sure you want to remove this note?"
-                    onClose={handleCloseAlert}
+                    onClose={handleCA}
                     onRemove={handleRemoveNote}
                   />
                 )}

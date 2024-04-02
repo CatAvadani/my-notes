@@ -9,12 +9,12 @@ import {
 
 export interface Note {
   // Repeating the same name as the interface when naming the variables - don't add unneeded context 'Clean code'
-  noteTitle: string
-  noteText: string
+  // noteTitle: string
+  // noteText: string
 
   // Better naming approach:
-  // title: string;
-  // text:string;
+  title: string
+  text: string
 }
 
 interface NoteContextValue {
@@ -53,9 +53,7 @@ function NotesProvider(props: PropsWithChildren) {
 
   const removeNote = (note: Note) => {
     console.log('i was clicked')
-    const updatedNotes = notes.filter(
-      (item) => item.noteTitle !== note.noteTitle
-    )
+    const updatedNotes = notes.filter((item) => item.title !== note.title)
     setNotes(updatedNotes)
   }
 

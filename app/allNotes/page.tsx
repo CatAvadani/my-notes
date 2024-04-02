@@ -59,13 +59,11 @@ export default function AllNotes() {
       <div className="flex flex-col w-[90vw] md:w-[50vw] space-y-3">
         {notes.map((note) => (
           <div
-            key={note.noteTitle}
+            key={note.title}
             className=" bg-gray-50 border p-4 rounded shadow-md"
           >
             <div className="flex justify-between">
-              <h1 className=" font-semibold mb-2 capitalize">
-                {note.noteTitle}
-              </h1>
+              <h1 className=" font-semibold mb-2 capitalize">{note.title}</h1>
               <div className="flex justify-center gap-2">
                 <PencilSquareIcon className=" size-5 text-gray-600 cursor-pointer hover:scale-125 transition-all" />
                 <XMarkIcon
@@ -84,7 +82,7 @@ export default function AllNotes() {
               </div>
             </div>
             <hr />
-            <p className="mt-4">{note.noteText}</p>
+            <p className="mt-4">{note.text}</p>
           </div>
         ))}
       </div>

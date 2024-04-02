@@ -8,11 +8,6 @@ import {
 } from 'react'
 
 export interface Note {
-  // Repeating the same name as the interface when naming the variables - don't add unneeded context 'Clean code'
-  // noteTitle: string
-  // noteText: string
-
-  // Better naming approach:
   title: string
   text: string
 }

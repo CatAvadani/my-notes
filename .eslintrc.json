@@ -6,17 +6,10 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "eslint: recommend",
+    "eslint:recommended",
     "plugin:prettier/recommended",
     "next"
   ],
   "ignorePatterns": ["dist", ".eslintrc.cjs"],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["react-refresh"],
-  "rules": {
-    "react-refresh/only-export-components": [
-      "warn",
-      { "allowConstantExport": true }
-    ]
-  }
+  "parser": "@typescript-eslint/parser"
 }

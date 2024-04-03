@@ -16,12 +16,14 @@ export default function Home() {
     const text = e.target.value
     setNewTitle(text)
   }
+
   // Not specifying the type of the parameter 'e'
   // Correct version: function handleNoteChange(e: React.ChangeEvent<HTMLTextAreaElement>)
   function handleNoteChange(e) {
     const note = e.target.value
     setNewNote(note)
   }
+
   // Missing type for 'e'
   // Correct version: function handleClick(e: React.MouseEvent<HTMLButtonElement>)
   function handleClick(e) {

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "next lint",
     "prettier": "prettier . --check"
   },
   "dependencies": {
@@ -17,8 +17,7 @@
     "eslint-plugin-tailwindcss": "^3.15.1",
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18",
-    "typescript-eslint": "^7.5.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",

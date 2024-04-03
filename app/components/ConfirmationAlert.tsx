@@ -15,7 +15,7 @@ const ConfirmationAlert: React.FC<SimpleAlertDialogProps> = ({
   // Unused code - this code should be removed 'Clean code'
   // const { removeNote } = useNotes()
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity/10">
       <div className="bg-white m-6 md:m-auto p-6 rounded shadow-lg md:text-lg">
         <div className="text-xl mb-4">{message}</div>
         <hr />

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Footer from './components/Footer'
 import NotesProvider from './contexts/NoteContext'
 import './globals.css'
+import React from 'react'
 
 export const metadata: Metadata = {
   title: 'MY NOTES',
@@ -17,7 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="h-full min-h-screen flex flex-col items-center justify-between">
+      {/*     // The wrong order of the Tailwind CSS classnames - this will cause ESLint errors - should be - className="flex h-full min-h-screen flex-col items-center justify-between" */}
+      <body className=" h-full min-h-screen flex flex-col items-center justify-between">
         <main className=" flex flex-col items-center ">
           <NotesProvider>{children}</NotesProvider>
           <Link href={'/'}>

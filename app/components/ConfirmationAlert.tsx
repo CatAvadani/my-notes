@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNotes } from '../contexts/NoteContext'
 
 interface SimpleAlertDialogProps {
   message: string
@@ -14,6 +13,7 @@ const ConfirmationAlert: React.FC<SimpleAlertDialogProps> = ({
 }) => {
   // Unused code - this code should be removed 'Clean code'
   // const { removeNote } = useNotes()
+  // In the following code I use the wrong order of the Tailwind CSS classnames - this will cause ESLint errors
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10">
       <div className="bg-white m-6 md:m-auto p-6 rounded shadow-lg md:text-lg">
@@ -26,6 +26,7 @@ const ConfirmationAlert: React.FC<SimpleAlertDialogProps> = ({
           >
             Remove
           </button>
+
           <button
             onClick={onClose}
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:bg-green-600 md:text-lg"

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useNotes } from './contexts/NoteContext'
+import React from 'react'
 
 export default function Home() {
   const router = useRouter()
@@ -11,7 +12,7 @@ export default function Home() {
   const [newNote, setNewNote] = useState('')
 
   // Missing the type for 'e'
-  // Correct version: function handleTitleChange(e: React.ChangeEvent<HTMLTextAreaElement>)
+  // Correct version: function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>)
   function handleTitleChange(e) {
     const text = e.target.value
     setNewTitle(text)
@@ -26,7 +27,7 @@ export default function Home() {
 
   // Missing type for 'e'
   // Correct version: function handleClick(e: React.MouseEvent<HTMLButtonElement>)
-  function handleClick(e) {
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     const note = { title: newTitle, text: newNote }
     addNote(note)
     router.push('/allNotes')
